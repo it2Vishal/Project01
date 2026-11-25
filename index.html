@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORBITQUIZ — Science & Tech Trivia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{color-scheme:dark;--bg:#07090c;--panel:#11151b;--panel2:#151a21;--line:#272e37;--white:#f4f5f7;--muted:#929aa6;--lime:#c7f36b;--purple:#a499ff;--mono:'DM Mono',monospace;--sans:'Manrope',sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--white);font:14px var(--sans);overflow-x:hidden}.bg-wrap{position:fixed;inset:0;overflow:hidden;z-index:-1;background:radial-gradient(ellipse at 50% 38%,#17211d 0,#0a0d0f 42%,#07090c 78%)}.bg-glow{position:absolute;width:680px;height:680px;left:50%;top:31%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,#242a1d20 0,#bbef6c0b 37%,transparent 68%);filter:blur(9px)}.bg-orbit{position:absolute;width:850px;height:250px;border:1px solid #b9ec6c15;border-radius:50%;left:50%;top:26%;transform:translate(-50%,-50%) rotate(-18deg);box-shadow:0 0 50px #a7df6410,inset 0 0 40px #a7df6408}.orbit-two{width:720px;height:210px;transform:translate(-50%,-50%) rotate(29deg);border-color:#a499ff12}.bg-vignette{position:absolute;inset:0;background:linear-gradient(180deg,#07090c18 0%,#07090c00 30%,#07090c 95%)}.stars{position:absolute;inset:0;opacity:.35;background-image:radial-gradient(1px 1px at 11% 22%,#e8f6d9 50%,transparent),radial-gradient(1px 1px at 82% 12%,#fff 50%,transparent),radial-gradient(1px 1px at 73% 44%,#c7f36b 50%,transparent),radial-gradient(1px 1px at 19% 67%,#fff 50%,transparent),radial-gradient(1px 1px at 91% 73%,#fff 50%,transparent),radial-gradient(1px 1px at 37% 8%,#fff 50%,transparent),radial-gradient(1px 1px at 61% 81%,#fff 50%,transparent);background-size:500px 400px}.site-header{height:78px;padding:0 clamp(20px,6vw,92px);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff0c;position:relative}.brand{display:flex;align-items:center;gap:0;color:#f4f5f7;text-decoration:none;font-size:16px;font-weight:800;letter-spacing:2px}.brand span{color:var(--lime)}.brand i{width:5px;height:5px;background:var(--lime);border-radius:50%;margin:11px 0 0 3px;box-shadow:0 0 12px var(--lime)}button{font:inherit;cursor:pointer}.ghost-btn{background:transparent;color:#aab0ba;border:1px solid #ffffff20;padding:9px 14px;border-radius:7px;font-size:11px;transition:.2s}.ghost-btn:hover{color:var(--lime);border-color:#c7f36b70}.app{max-width:850px;margin:0 auto;padding:64px 24px 75px}.screen{animation:rise .42s ease both}@keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}.kicker{font:11px var(--mono);text-transform:uppercase;letter-spacing:2px;color:var(--lime);margin:0 0 17px}.title{font-size:clamp(47px,8vw,76px);letter-spacing:-5px;line-height:.99;margin:0;font-weight:700}.outline{color:transparent;-webkit-text-stroke:1px #c8ccd1}.lead{color:#929aa6;max-width:440px;line-height:1.8;font-size:13px;margin:18px 0 29px}.topic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.topic{position:relative;min-height:125px;background:linear-gradient(145deg,#151a20,#101318);border:1px solid #ffffff13;border-radius:11px;padding:15px;text-align:left;color:var(--white);transition:.2s;overflow:hidden}.topic:hover{transform:translateY(-3px);border-color:#c7f36b65}.topic.selected{border-color:var(--lime);box-shadow:0 0 0 1px #c7f36b25,inset 0 0 30px #c7f36b09}.topic-icon{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:#ffffff0a;color:var(--lime);font:16px var(--mono);margin-bottom:13px}.topic strong{font-size:11px;display:block;font-weight:700}.topic small{display:block;color:#7f8793;font:9px var(--mono);margin-top:5px}.topic-score{position:absolute;right:11px;top:13px;color:#78818d;font:9px var(--mono)}.settings{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding:15px 17px;background:#11151b;border:1px solid #ffffff12;border-radius:10px}.setting{display:flex;align-items:center;gap:17px}.label{font-size:11px;color:#d5d8dd;font-weight:600}.label small{font-size:9px;color:#7e8793;font-weight:400}.segmented{display:flex;gap:3px;background:#090c10;border:1px solid #262c34;padding:3px;border-radius:7px}.segmented button{background:transparent;color:#858d98;border:0;border-radius:5px;padding:6px 11px;font:10px var(--mono)}.segmented button.is-active{background:#272f27;color:var(--lime)}.switch{position:relative;width:34px;height:19px}.switch input{position:absolute;opacity:0}.switch-track{position:absolute;inset:0;background:#30363e;border-radius:20px;transition:.2s;cursor:pointer}.switch-track:before{content:'';position:absolute;width:13px;height:13px;top:3px;left:3px;border-radius:50%;background:#a1a7af;transition:.2s}.switch input:checked+.switch-track{background:#53722a}.switch input:checked+.switch-track:before{transform:translateX(15px);background:var(--lime)}.btn{border:1px solid #ffffff24;color:#d5d8dd;background:#11151b;border-radius:7px;padding:11px 16px;font-weight:600;font-size:11px;transition:.2s}.btn:hover:not(:disabled){border-color:#c7f36b70;color:var(--lime)}.btn-fill{border-color:var(--lime);background:var(--lime);color:#10140b}.btn-fill:hover:not(:disabled){background:#d6ff8d;color:#10140b;box-shadow:0 5px 22px #c7f36b25}.btn-fill:disabled{cursor:not-allowed;opacity:.42}.btn span{margin-left:16px;font-size:15px}.btn-large{width:100%;padding:15px;margin-top:13px;font-size:12px}.quiz-top{display:flex;align-items:center;gap:13px;margin:10px 0 13px}.chip{border:1px solid #c7f36b45;background:#c7f36b0b;color:var(--lime);padding:7px 10px;border-radius:20px;font:10px var(--mono)}.counter{font:11px var(--mono);color:#929aa6}.timer{margin-left:auto;font:12px var(--mono);color:var(--lime);padding:7px 10px;border:1px solid #c7f36b40;border-radius:6px}.timer.urgent{color:#ff8b7f;border-color:#ff8b7f70}.progress{height:3px;background:#252a30;border-radius:4px;margin-bottom:17px;overflow:hidden}.progress-fill{height:100%;width:0;background:var(--lime);transition:width .3s}.question-card{padding:clamp(22px,5vw,40px);min-height:350px;background:linear-gradient(145deg,#151a20ed,#101318f2);border:1px solid #ffffff16;border-radius:12px}.question-index{font:10px var(--mono);color:#737d89;margin:0 0 17px}.question{font-size:clamp(20px,4vw,28px);letter-spacing:-.8px;line-height:1.4;margin:0 0 25px;max-width:690px}.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.option{display:flex;align-items:center;gap:11px;padding:13px 14px;background:#0b0e12;border:1px solid #ffffff14;color:#d4d7dc;border-radius:8px;text-align:left;font-size:11px;min-height:49px;transition:.18s}.option:hover:not(:disabled){border-color:#c7f36b80}.option .letter{width:22px;height:22px;display:grid;place-items:center;border:1px solid #343b44;border-radius:5px;color:#9aa1ab;font:10px var(--mono);flex:0 0 auto}.option.selected{border-color:#b8e86a;color:#f3f5f0;background:#c7f36b0b}.option.selected .letter{background:var(--lime);border-color:var(--lime);color:#10140b}.option.correct{border-color:#76d69d;background:#76d69d10}.option.correct .letter{background:#76d69d;color:#10140b;border-color:#76d69d}.option.incorrect{border-color:#ff827a;background:#ff827a0a}.option.incorrect .letter{background:#ff827a;color:#10140b;border-color:#ff827a}.feedback{min-height:18px;color:#aab1ba;font-size:11px;margin:15px 0 0}.feedback.good{color:#83dfaa}.feedback.bad{color:#ff958c}.quiz-actions{display:flex;justify-content:space-between;gap:10px;margin-top:14px}.quiz-actions .btn{min-width:115px}.result-card{text-align:center;padding:27px 25px 23px;background:linear-gradient(145deg,#151a20ed,#101318f2);border:1px solid #ffffff16;border-radius:12px}.result-card .kicker{margin-bottom:8px}.score-ring{width:130px;height:130px;margin:0 auto 10px;position:relative}.score-ring svg{width:100%;height:100%;transform:rotate(-90deg)}.ring-bg,.ring-fill{fill:none;stroke-width:5}.ring-bg{stroke:#292f36}.ring-fill{stroke:var(--lime);stroke-linecap:round;stroke-dasharray:327;stroke-dashoffset:327;transition:stroke-dashoffset 1s ease}.score-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}.score-text span{font:700 29px var(--sans);letter-spacing:-1.5px}.score-text small{font:9px var(--mono);color:#9098a4;margin-top:2px}.result-message{font-size:22px;margin:8px 0 5px;letter-spacing:-.7px}.best{font-size:10px;color:#9ba3ad;margin:0}.stats-row{display:flex;justify-content:center;gap:0;margin:23px auto 0;max-width:400px;border-top:1px solid #ffffff12;padding-top:17px}.stats-row div{min-width:115px;display:flex;flex-direction:column;gap:5px}.stats-row div+div{border-left:1px solid #ffffff12}.stats-row b{font:17px var(--mono);color:#f3f4f6}.stats-row span{font:9px var(--mono);color:#858e99;text-transform:uppercase;letter-spacing:1px}.review-title{font-size:13px;margin:25px 0 11px}.review-title span{font:10px var(--mono);color:#858e99}.review-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}.review-item{padding:13px 15px;background:#11151b;border:1px solid #ffffff12;border-radius:8px}.review-item>strong{font-size:11px;line-height:1.5;display:flex;gap:9px}.review-mark{color:#79d99e}.review-mark.wrong{color:#ff8c82}.review-item p{font-size:10px;color:#939ca8;margin:7px 0 0 21px;line-height:1.6}.review-item p b{color:#d9dce0;font-weight:600}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,15px);padding:11px 16px;background:#d4fb8d;color:#14190d;border-radius:7px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;box-shadow:0 8px 30px #0005}.toast.show{opacity:1;transform:translate(-50%,0)}[hidden]{display:none!important}@media(max-width:640px){.site-header{height:66px;padding:0 19px}.app{padding:43px 17px 50px}.title{letter-spacing:-3px}.lead{font-size:12px;margin-bottom:22px}.topic-grid{grid-template-columns:1fr 1fr;gap:8px}.topic{min-height:109px;padding:12px}.settings{align-items:stretch;flex-direction:column;gap:16px;padding:14px}.setting{justify-content:space-between}.options{grid-template-columns:1fr}.question-card{min-height:0;padding:22px 17px}.quiz-top{gap:8px}.stats-row div{min-width:0;flex:1}.review-title span{display:block;margin-top:5px}.result-card{padding:24px 14px}.bg-orbit{width:600px}.quiz-actions .btn{min-width:0;flex:1}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="bg-glow"></div>
+    <div class="bg-orbit"></div>
+    <div class="bg-orbit orbit-two"></div>
+    <div class="stars"></div>
+    <div class="bg-vignette"></div>
+  </div>
+
+  <header class="site-header">
+    <a href="#home" class="brand" id="brandHome" aria-label="ORBITQUIZ Home">
+      ORBIT<span>QUIZ</span><i></i>
+    </a>
+    <button type="button" class="ghost-btn" id="headerActionBtn">Reset Scores</button>
+  </header>
+
+  <main class="app">
+    <section class="screen" id="homeScreen" aria-labelledby="heroTitle">
+      <p class="kicker">Knowledge Telemetry // v2.6</p>
+      <h1 class="title" id="heroTitle">
+        Test your<br /><span class="outline">tech orbit.</span>
+      </h1>
+      <p class="lead">
+        Calibrate your command over astrophysics, quantum mechanics, algorithms, and neural architectures. Pick a sector to initiate sequence.
+      </p>
+
+      <div class="topic-grid" id="topicGrid" role="radiogroup" aria-label="Select a quiz topic"></div>
+
+      <div class="settings">
+        <div class="setting">
+          <div class="label">
+            Question Count<br />
+            <small>Questions per session</small>
+          </div>
+          <div class="segmented" id="countSegmented" role="group" aria-label="Number of questions">
+            <button type="button" data-count="5">5</button>
+            <button type="button" class="is-active" data-count="10">10</button>
+            <button type="button" data-count="15">15</button>
+          </div>
+        </div>
+
+        <div class="setting">
+          <div class="label">
+            Timed Mode<br />
+            <small>20s countdown per question</small>
+          </div>
+          <label class="switch" aria-label="Toggle timed mode">
+            <input type="checkbox" id="timedToggle" checked />
+            <span class="switch-track"></span>
+          </label>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-fill btn-large" id="startBtn" disabled>
+        Start Quiz <span>→</span>
+      </button>
+    </section>
+
+    <section class="screen" id="quizScreen" hidden aria-live="polite">
+      <div class="quiz-top">
+        <span class="chip" id="quizTopicChip">Topic</span>
+        <span class="counter" id="quizCounter">Question 1 of 10</span>
+        <span class="timer" id="quizTimer">00:20</span>
+      </div>
+
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <article class="question-card">
+        <p class="question-index" id="questionIndex">NODE // 01</p>
+        <h2 class="question" id="questionText">Loading question...</h2>
+        <div class="options" id="optionsGrid" role="group" aria-label="Answer choices"></div>
+        <p class="feedback" id="feedbackText"></p>
+      </article>
+
+      <div class="quiz-actions">
+        <button type="button" class="btn" id="quitBtn">Abort</button>
+        <button type="button" class="btn btn-fill" id="nextBtn" disabled>
+          Next Question <span>→</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="screen" id="resultScreen" hidden>
+      <div class="result-card">
+        <p class="kicker" id="resultKicker">TELEMETRY COMPLETE</p>
+
+        <div class="score-ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+            <circle class="ring-fill" id="scoreRingFill" cx="60" cy="60" r="52"></circle>
+          </svg>
+          <div class="score-text">
+            <span id="scorePercent">0%</span>
+            <small id="scoreFraction">0 / 10</small>
+          </div>
+        </div>
+
+        <h2 class="result-message" id="resultMessage">Orbital Insertion Achieved</h2>
+        <p class="best" id="bestScoreText">Personal Best: 0%</p>
+
+        <div class="stats-row">
+          <div>
+            <b id="statAccuracy">0%</b>
+            <span>Accuracy</span>
+          </div>
+          <div>
+            <b id="statTime">0s</b>
+            <span>Time Taken</span>
+          </div>
+          <div>
+            <b id="statStreak">0</b>
+            <span>Best Streak</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-actions">
+        <button type="button" class="btn" id="chooseAnotherBtn">Choose Another Topic</button>
+        <button type="button" class="btn btn-fill" id="retryTopicBtn">
+          Retry Topic <span>↻</span>
+        </button>
+      </div>
+
+      <h3 class="review-title">
+        Diagnostic Breakdown <span id="reviewSummaryText">// 0 correct</span>
+      </h3>
+      <ul class="review-list" id="reviewList"></ul>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    function init() {
+      "use strict";
+
+      const STORAGE_KEY = "orbitquiz_best_scores_v26";
+      const QUESTION_TIME = 20;
+      const RING_CIRCUMFERENCE = 327;
+      const LETTERS = ["A", "B", "C", "D"];
+
+      const TOPICS = [
+        {
+          id: "cosmos",
+          name: "Space & Cosmos",
+          icon: "✦",
+          subtitle: "Astrophysics & Orbits",
+          questions: [
+            {
+              q: "What is the boundary around a black hole beyond which no light or radiation can escape?",
+              options: ["Schwarzschild Radius", "Event Horizon", "Photon Sphere", "Roche Limit"],
+              answer: 1,
+              explanation: "The event horizon marks the point of no return where escape velocity exceeds the speed of light."
+            },
+            {
+              q: "Which spacecraft became the first human-made object to enter interstellar space in 2012?",
+              options: ["Voyager 1", "Pioneer 10", "New Horizons", "Voyager 2"],
+              answer: 0,
+              explanation: "Voyager 1 crossed the heliopause into interstellar space in August 2012."
+            },
+            {
+              q: "What is the primary fuel fused inside main-sequence stars like our Sun?",
+              options: ["Helium into Carbon", "Hydrogen into Helium", "Deuterium into Neon", "Carbon into Iron"],
+              answer: 1,
+              explanation: "Main-sequence stars sustain hydrostatic equilibrium by fusing hydrogen nuclei into helium."
+            },
+            {
+              q: "Which Lagrange point hosts the James Webb Space Telescope (JWST)?",
+              options: ["Sun-Earth L1", "Sun-Earth L2", "Earth-Moon L4", "Sun-Earth L5"],
+              answer: 1,
+              explanation: "JWST orbits Sun-Earth L2, roughly 1.5 million km away, keeping Earth and the Sun behind its sunshield."
+            },
+            {
+              q: "What phenomenon causes light from distant galaxies to stretch toward longer wavelengths?",
+              options: ["Gravitational Lensing", "Cosmological Redshift", "Cherenkov Radiation", "Rayleigh Scattering"],
+              answer: 1,
+              explanation: "The metric expansion of space stretches wavelengths of traveling photons, producing cosmological redshift."
+            },
+            {
+              q: "Which moon in our solar system possesses a thick nitrogen-rich atmosphere and liquid methane lakes?",
+              options: ["Europa", "Enceladus", "Titan", "Ganymede"],
+              answer: 2,
+              explanation: "Saturn's largest moon Titan has a dense nitrogen atmosphere and stable surface lakes of liquid hydrocarbons."
+            },
+            {
+              q: "What type of stellar remnant is supported purely by neutron degeneracy pressure?",
+              options: ["White Dwarf", "Neutron Star", "Brown Dwarf", "Magnetar Shell"],
+              answer: 1,
+              explanation: "When a massive star collapses below the Tolman–Oppenheimer–Volkoff limit, neutron degeneracy halts collapse."
+            },
+            {
+              q: "Roughly how long does it take sunlight to travel from the Sun's photosphere to Earth?",
+              options: ["8 minutes 20 seconds", "1 minute 42 seconds", "14 minutes 10 seconds", "4 minutes 55 seconds"],
+              answer: 0,
+              explanation: "At ~149.6 million km (1 AU) and c ≈ 299,792 km/s, sunlight takes approximately 499 seconds (8m 20s)."
+            },
+            {
+              q: "Which planet has the fastest rotational period in our solar system, spinning once in under 10 hours?",
+              options: ["Saturn", "Neptune", "Jupiter", "Mercury"],
+              answer: 2,
+              explanation: "Jupiter completes a full rotation on its axis in roughly 9 hours and 55 minutes."
+            },
+            {
+              q: "What is the Cosmic Microwave Background (CMB)?",
+              options: ["Radiation from active galactic nuclei", "Thermal relic radiation from recombination", "Solar wind plasma waves", "Dark matter annihilation gamma rays"],
+              answer: 1,
+              explanation: "The CMB is the oldest electromagnetic radiation in the universe, emitted ~380,000 years after the Big Bang."
+            },
+            {
+              q: "What is the name of the supermassive black hole at the center of the Milky Way?",
+              options: ["Messier 87*", "Sagittarius A*", "Cygnus X-1", "TON 618"],
+              answer: 1,
+              explanation: "Sagittarius A* (Sgr A*) sits at the Galactic Center with a mass of roughly 4.3 million suns."
+            },
+            {
+              q: "Which physical law states that a planet sweeps out equal areas in equal times during its orbit?",
+              options: ["Kepler's First Law", "Kepler's Second Law", "Hubble's Law", "Bode's Law"],
+              answer: 1,
+              explanation: "Kepler's Second Law reflects the conservation of angular momentum in orbital mechanics."
+            },
+            {
+              q: "What is the minimum distance to which a celestial body held together only by gravity can approach a second body without disintegrating?",
+              options: ["Chandrasekhar Limit", "Roche Limit", "Eddington Limit", "Kármán Line"],
+              answer: 1,
+              explanation: "Inside the Roche limit, tidal forces exerted by the primary body exceed the satellite's self-gravitation."
+            },
+            {
+              q: "Which mission returned the first regolith samples from the asteroid Bennu in 2023?",
+              options: ["Hayabusa2", "OSIRIS-REx", "DART", "Dawn"],
+              answer: 1,
+              explanation: "NASA's OSIRIS-REx delivered over 120 grams of pristine carbon-rich material from asteroid Bennu."
+            },
+            {
+              q: "Approximately what percentage of the universe's total mass-energy density is composed of Dark Energy?",
+              options: ["27%", "5%", "68%", "92%"],
+              answer: 2,
+              explanation: "Lambda-CDM cosmology estimates ~68% dark energy, ~27% dark matter, and ~5% ordinary baryonic matter."
+            }
+          ]
+        },
+        {
+          id: "quantum",
+          name: "Quantum & Physics",
+          icon: "⚛",
+          subtitle: "Particles & Relativity",
+          questions: [
+            {
+              q: "Which principle states that position and momentum of a particle cannot both be known with arbitrary precision?",
+              options: ["Pauli Exclusion Principle", "Heisenberg Uncertainty Principle", "Correspondence Principle", "Fermat's Principle"],
+              answer: 1,
+              explanation: "Formulated by Werner Heisenberg in 1927, Δx·Δp ≥ ħ/2 is a fundamental property of quantum wavefunctions."
+            },
+            {
+              q: "What boson is responsible for mediating the electromagnetic force?",
+              options: ["Gluon", "Photon", "W Boson", "Higgs Boson"],
+              answer: 1,
+              explanation: "Massless photons act as the force carriers (gauge bosons) of quantum electrodynamics."
+            },
+            {
+              q: "In Einstein's Special Relativity, what happens to a clock moving at relativistic speed relative to a stationary observer?",
+              options: ["It ticks faster", "It ticks slower", "It stops completely at 0.5c", "It reverses direction"],
+              answer: 1,
+              explanation: "Time dilation causes moving clocks to run slower by the Lorentz factor γ = 1 / √(1 - v²/c²)."
+            },
+            {
+              q: "Which quantum phenomenon allows particles to pass through a potential energy barrier higher than their kinetic energy?",
+              options: ["Quantum Entanglement", "Quantum Tunneling", "Superposition Collapse", "Zeeman Splitting"],
+              answer: 1,
+              explanation: "Because wavefunctions decay exponentially rather than dropping to zero inside barriers, particles can tunnel through."
+            },
+            {
+              q: "What particles make up a proton in the Standard Model?",
+              options: ["Two up quarks and one down quark", "Two down quarks and one up quark", "Three strange quarks", "One up quark and two electrons"],
+              answer: 0,
+              explanation: "A proton has quark composition uud (+2/3 + 2/3 - 1/3 = +1 elementary charge) bound by gluons."
+            },
+            {
+              q: "Which rule prevents two identical fermions from occupying the exact same quantum state simultaneously?",
+              options: ["Hund's Rule", "Pauli Exclusion Principle", "Born Rule", "No-Cloning Theorem"],
+              answer: 1,
+              explanation: "Half-integer spin particles (fermions) obey Fermi-Dirac statistics and cannot share identical quantum numbers."
+            },
+            {
+              q: "What temperature represents Absolute Zero in degrees Celsius?",
+              options: ["-273.15 °C", "-373.15 °C", "-196.00 °C", "-459.67 °C"],
+              answer: 0,
+              explanation: "0 Kelvin equals -273.15 °C, where a classical thermodynamic system reaches minimum internal energy."
+            },
+            {
+              q: "Which experiment demonstrated both the wave-like interference and particle-like detection of single electrons?",
+              options: ["Michelson-Morley Experiment", "Double-Slit Experiment", "Stern-Gerlach Experiment", "Millikan Oil Drop Experiment"],
+              answer: 1,
+              explanation: "Individual electrons build up an interference pattern over time unless which-path measurement collapses the wavefunction."
+            },
+            {
+              q: "What is the antiparticle of the electron?",
+              options: ["Muon", "Positron", "Antineutrino", "Pion"],
+              answer: 1,
+              explanation: "Predicted by Paul Dirac in 1928, the positron has the same mass as an electron but a +1 elementary charge."
+            },
+            {
+              q: "Which force is the strongest of the four fundamental forces at subatomic distances (~1 femtometer)?",
+              options: ["Electromagnetic Force", "Strong Nuclear Force", "Weak Nuclear Force", "Gravitational Force"],
+              answer: 1,
+              explanation: "The strong interaction binds quarks into hadrons and holds protons and neutrons together in atomic nuclei."
+            },
+            {
+              q: "What theorem links every differentiable symmetry of a physical system's action to a corresponding conservation law?",
+              options: ["Bell's Theorem", "Noether's Theorem", "Liouville's Theorem", "Ehrenfest's Theorem"],
+              answer: 1,
+              explanation: "Emmy Noether proved in 1918 that time-translation symmetry yields energy conservation and spatial symmetry yields momentum."
+            },
+            {
+              q: "What property of a material drops to exactly zero below its critical temperature in a superconductor?",
+              options: ["Thermal Conductivity", "Electrical Resistance", "Magnetic Susceptibility", "Specific Heat"],
+              answer: 1,
+              explanation: "Superconductors exhibit zero DC electrical resistance and expel magnetic flux fields (the Meissner effect)."
+            },
+            {
+              q: "What does the 'No-Cloning Theorem' state in quantum information theory?",
+              options: ["Qubits cannot be entangled twice", "An arbitrary unknown quantum state cannot be copied identically", "Photons cannot be split", "Quantum gates must be irreversible"],
+              answer: 1,
+              explanation: "Linearity of unitary quantum evolution forbids creating an exact copy of an arbitrary unknown quantum state."
+            },
+            {
+              q: "Which effect describes the emission of electrons when light above a threshold frequency hits a metal surface?",
+              options: ["Compton Effect", "Photoelectric Effect", "Doppler Effect", "Hall Effect"],
+              answer: 1,
+              explanation: "Einstein explained the photoelectric effect in 1905 by showing light energy is quantized into discrete packets (photons)."
+            },
+            {
+              q: "What is the theoretical smallest measurable unit of length in quantum gravity (~1.616 × 10⁻³⁵ m)?",
+              options: ["Compton Wavelength", "Planck Length", "Bohr Radius", "Fermi Length"],
+              answer: 1,
+              explanation: "The Planck length is constructed from ħ, G, and c, marking the scale where quantum gravitational effects dominate."
+            }
+          ]
+        },
+        {
+          id: "cs",
+          name: "Computer Science",
+          icon: "⌘",
+          subtitle: "Algorithms & Systems",
+          questions: [
+            {
+              q: "What is the worst-case time complexity of Binary Search on a sorted array of n elements?",
+              options: ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
+              answer: 1,
+              explanation: "Binary search halves the remaining search space on every comparison, yielding logarithmic O(log n) steps."
+            },
+            {
+              q: "Which data structure operates strictly on a Last-In, First-Out (LIFO) principle?",
+              options: ["Queue", "Stack", "Priority Heap", "Circular Buffer"],
+              answer: 1,
+              explanation: "A stack pushes and pops elements from the same end, enforcing Last-In, First-Out ordering."
+            },
+            {
+              q: "In distributed systems, what does the CAP theorem state a system cannot simultaneously guarantee during a network partition?",
+              options: ["Consistency and Availability", "Caching and Authentication", "Concurrency and Atomicity", "Compression and Pipelining"],
+              answer: 0,
+              explanation: "When a network partition (P) occurs, a distributed datastore must choose between Consistency (C) and Availability (A)."
+            },
+            {
+              q: "Which sorting algorithm has an average-case complexity of O(n log n) and sorts in-place without extra array allocation?",
+              options: ["Merge Sort", "Quicksort", "Counting Sort", "Radix Sort"],
+              answer: 1,
+              explanation: "Quicksort partitions elements in-place around a pivot in O(n log n) average time using O(log n) stack space."
+            },
+            {
+              q: "What is a 'deadlock' in concurrent operating systems?",
+              options: ["A thread running an infinite loop", "Two or more processes waiting indefinitely for resources held by each other", "A segmentation fault in kernel mode", "Memory fragmentation in the heap"],
+              answer: 1,
+              explanation: "Deadlock arises when mutual exclusion, hold-and-wait, no preemption, and circular wait occur simultaneously."
+            },
+            {
+              q: "Which cryptographic primitive produces a fixed-size digest and is computationally infeasible to invert?",
+              options: ["Symmetric Block Cipher", "Cryptographic Hash Function", "Diffie-Hellman Key Exchange", "Elliptic Curve Signature"],
+              answer: 1,
+              explanation: "Cryptographic hashes like SHA-256 are deterministic, preimage-resistant, and collision-resistant."
+            },
+            {
+              q: "What is the primary role of a Translation Lookaside Buffer (TLB) in modern CPUs?",
+              options: ["Cache recent virtual-to-physical page translations", "Predict conditional branch targets", "Store decoded micro-operations", "Buffer disk I/O writes"],
+              answer: 0,
+              explanation: "The TLB is a fast hardware cache inside the MMU that accelerates virtual memory address translation."
+            },
+            {
+              q: "Which graph traversal algorithm finds shortest paths from a single source on graphs with non-negative edge weights?",
+              options: ["Depth-First Search", "Dijkstra's Algorithm", "Kruskal's Algorithm", "Topological Sort"],
+              answer: 1,
+              explanation: "Dijkstra's algorithm greedily expands the closest unvisited vertex using a priority queue in O((V + E) log V)."
+            },
+            {
+              q: "What HTTP status code indicates that a requested resource has been permanently moved to a new URI?",
+              options: ["301 Moved Permanently", "403 Forbidden", "409 Conflict", "502 Bad Gateway"],
+              answer: 0,
+              explanation: "301 instructs clients and search engines to update bookmarks and links to the Location header target."
+            },
+            {
+              q: "Which database isolation anomaly occurs when a transaction reads rows that another concurrent transaction later modifies or deletes?",
+              options: ["Phantom Read", "Non-Repeatable Read", "Lost Update", "Deadlock"],
+              answer: 1,
+              explanation: "A non-repeatable read happens when re-reading the same row within a transaction yields changed values."
+            },
+            {
+              q: "What is the space complexity of the call stack during a recursive Depth-First Search on a tree of height h?",
+              options: ["O(1)", "O(h)", "O(2^h)", "O(h²)"],
+              answer: 1,
+              explanation: "Recursive DFS keeps at most one active path from root to leaf on the call stack, using O(h) space."
+            },
+            {
+              q: "Which network protocol operates at the transport layer and provides reliable, ordered, byte-stream delivery?",
+              options: ["UDP", "TCP", "IP", "ARP"],
+              answer: 1,
+              explanation: "TCP uses sequence numbers, acknowledgments, flow control, and congestion control to guarantee reliable delivery."
+            },
+            {
+              q: "What technique reduces latency by serving responses from a geographically distributed edge cache close to the user?",
+              options: ["Sharding", "Content Delivery Network (CDN)", "MapReduce", "RAID Striping"],
+              answer: 1,
+              explanation: "CDNs cache static and edge-computed assets across points of presence near end users to cut round-trip time."
+            },
+            {
+              q: "Which class of decision problems can be verified in polynomial time by a deterministic Turing machine?",
+              options: ["NP", "EXPTIME", "PSPACE-Hard", "Undecidable"],
+              answer: 0,
+              explanation: "NP (Nondeterministic Polynomial time) consists of decision problems whose candidate solutions can be verified in O(n^k) time."
+            },
+            {
+              q: "What does a B+ tree optimize compared to a standard binary search tree for disk-backed databases?",
+              options: ["In-memory pointer chasing", "High branching factor and sequential leaf scans", "String prefix compression", "Random key hashing"],
+              answer: 1,
+              explanation: "High fan-out minimizes disk block reads per lookup, while linked leaf nodes speed up range queries."
+            }
+          ]
+        },
+        {
+          id: "ai",
+          name: "Neural & AI",
+          icon: "◈",
+          subtitle: "Transformers & Learning",
+          questions: [
+            {
+              q: "What mechanism allows Transformer models to weigh the relevance of different tokens in a sequence regardless of distance?",
+              options: ["Recurrent Gating", "Self-Attention", "Max Pooling", "Convolutional Striding"],
+              answer: 1,
+              explanation: "Scaled dot-product self-attention computes pairwise compatibility between queries and keys across all positions."
+            },
+            {
+              q: "Which algorithm computes gradients of a loss function with respect to network weights via the chain rule?",
+              options: ["Backpropagation", "Simulated Annealing", "K-Means", "Expectation-Maximization"],
+              answer: 0,
+              explanation: "Backpropagation propagates error signals backward through the computation graph to compute exact parameter gradients."
+            },
+            {
+              q: "What problem does a Residual Connection (skip connection) primarily alleviate in deep neural networks?",
+              options: ["Overfitting on small datasets", "Vanishing gradients and degradation in deep layers", "Token vocabulary overflow", "Batch size instability"],
+              answer: 1,
+              explanation: "Adding identity shortcuts (x + F(x)) provides direct gradient highways during backpropagation."
+            },
+            {
+              q: "In reinforcement learning, what does the exploration-exploitation trade-off describe?",
+              options: ["Balancing training accuracy vs. inference speed", "Trying new actions to discover rewards vs. picking known high-reward actions", "Splitting data into train and test sets", "Pruning weights vs. quantizing activations"],
+              answer: 1,
+              explanation: "An agent must explore uncertain states while exploiting high-value actions to maximize cumulative return."
+            },
+            {
+              q: "Why do neural networks require non-linear activation functions like GELU or ReLU between linear layers?",
+              options: ["To reduce floating-point precision", "Because stacked linear transformations collapse into a single linear map", "To normalize input feature scales", "To prevent gradient descent oscillation"],
+              answer: 1,
+              explanation: "Without non-linearities, composing matrix multiplications remains linear and cannot approximate complex functions."
+            },
+            {
+              q: "What technique freezes pretrained model weights and trains small low-rank decomposition matrices to adapt efficiently?",
+              options: ["Dropout", "LoRA (Low-Rank Adaptation)", "Batch Normalization", "Knowledge Distillation"],
+              answer: 1,
+              explanation: "LoRA represents weight updates as ΔW = BA with rank r much smaller than hidden dimension, cutting trainable parameters."
+            },
+            {
+              q: "What does 'overfitting' mean when a model achieves near-zero training error but poor validation performance?",
+              options: ["The learning rate is too small", "The model memorized noise/specifics rather than generalizable patterns", "The batch size exceeds dataset size", "The loss function is non-convex"],
+              answer: 1,
+              explanation: "High variance causes the model to fit training idiosyncrasies instead of the underlying data distribution."
+            },
+            {
+              q: "Which training objective is used in masked or causal language modeling to measure how well a model predicts next tokens?",
+              options: ["Triplet Margin Loss", "Cross-Entropy Loss", "Mean Squared Error", "Hinge Loss"],
+              answer: 1,
+              explanation: "Cross-entropy compares predicted probability distributions over the vocabulary against the true next token."
+            },
+            {
+              q: "What is the purpose of positional encoding or Rotary Position Embeddings (RoPE) in Transformers?",
+              options: ["Inject sequence order information into permutation-equivariant attention", "Compress key-value caches on disk", "Clip outlier activations", "Schedule learning rate warmup"],
+              answer: 0,
+              explanation: "Because self-attention treats tokens as a set, positional representations encode relative or absolute token order."
+            },
+            {
+              q: "What regularization technique randomly zeroes out a fraction of activations during training to prevent co-adaptation?",
+              options: ["Label Smoothing", "Dropout", "Gradient Clipping", "Weight Decay"],
+              answer: 1,
+              explanation: "Dropout forces redundant representations across neurons and approximates averaging an ensemble of subnetworks."
+            },
+            {
+              q: "What does Retrieval-Augmented Generation (RAG) add to a language model pipeline?",
+              options: ["Reinforcement learning from human preferences", "Dynamic grounding from an external knowledge base or document index", "4-bit integer weight quantization", "Bidirectional encoder pretraining"],
+              answer: 1,
+              explanation: "RAG retrieves relevant external context at inference time so responses stay grounded in up-to-date or domain facts."
+            },
+            {
+              q: "What happens during 'hallucination' in a generative model?",
+              options: ["The optimizer diverges to NaN", "The model generates fluent but factually unsupported or false statements", "Attention weights become uniform across all tokens", "The tokenizer drops out-of-vocabulary characters"],
+              answer: 1,
+              explanation: "Autoregressive sampling optimizes token likelihood rather than ground-truth verification, which can produce plausible falsehoods."
+            },
+            {
+              q: "Which optimizer maintains per-parameter adaptive learning rates using first and second moment estimates of gradients?",
+              options: ["Adam", "Stochastic Gradient Descent (plain SGD)", "Coordinate Descent", "Nelder-Mead"],
+              answer: 0,
+              explanation: "Adam tracks exponentially decaying averages of past gradients (momentum) and squared gradients (RMSprop-like scaling)."
+            },
+            {
+              q: "What does reducing model weights from FP16/BF16 to INT4 primarily improve during inference?",
+              options: ["Training dataset size", "Memory footprint and memory-bandwidth throughput", "Context window mathematical exactness", "Gradient norm stability"],
+              answer: 1,
+              explanation: "Lower-bit quantization shrinks VRAM usage and speeds up token generation when inference is memory-bandwidth bound."
+            },
+            {
+              q: "In a Mixture-of-Experts (MoE) layer, what does a router (gating network) do for each token?",
+              options: ["Averages all expert outputs equally", "Selects a sparse subset of top-k specialized feed-forward experts", "Removes positional embeddings", "Computes cosine similarity across layers"],
+              answer: 1,
+              explanation: "Sparse routing activates only a few experts per token, scaling parameter capacity while keeping FLOPs per token lower."
+            }
+          ]
+        }
+      ];
+
+      // DOM References
+      const els = {
+        brandHome: document.getElementById("brandHome"),
+        headerActionBtn: document.getElementById("headerActionBtn"),
+        homeScreen: document.getElementById("homeScreen"),
+        topicGrid: document.getElementById("topicGrid"),
+        countSegmented: document.getElementById("countSegmented"),
+        timedToggle: document.getElementById("timedToggle"),
+        startBtn: document.getElementById("startBtn"),
+        quizScreen: document.getElementById("quizScreen"),
+        quizTopicChip: document.getElementById("quizTopicChip"),
+        quizCounter: document.getElementById("quizCounter"),
+        quizTimer: document.getElementById("quizTimer"),
+        progressBar: document.getElementById("progressBar"),
+        progressFill: document.getElementById("progressFill"),
+        questionIndex: document.getElementById("questionIndex"),
+        questionText: document.getElementById("questionText"),
+        optionsGrid: document.getElementById("optionsGrid"),
+        feedbackText: document.getElementById("feedbackText"),
+        quitBtn: document.getElementById("quitBtn"),
+        nextBtn: document.getElementById("nextBtn"),
+        resultScreen: document.getElementById("resultScreen"),
+        resultKicker: document.getElementById("resultKicker"),
+        scoreRingFill: document.getElementById("scoreRingFill"),
+        scorePercent: document.getElementById("scorePercent"),
+        scoreFraction: document.getElementById("scoreFraction"),
+        resultMessage: document.getElementById("resultMessage"),
+        bestScoreText: document.getElementById("bestScoreText"),
+        statAccuracy: document.getElementById("statAccuracy"),
+        statTime: document.getElementById("statTime"),
+        statStreak: document.getElementById("statStreak"),
+        chooseAnotherBtn: document.getElementById("chooseAnotherBtn"),
+        retryTopicBtn: document.getElementById("retryTopicBtn"),
+        reviewSummaryText: document.getElementById("reviewSummaryText"),
+        reviewList: document.getElementById("reviewList"),
+        toast: document.getElementById("toast")
+      };
+
+      // Persistent Best Scores
+      let bestScores = loadBestScores();
+      let toastTimer = null;
+
+      // Session Config & Active Quiz State
+      const state = {
+        selectedTopicId: null,
+        questionCount: 10,
+        timed: true,
+        activeTopic: null,
+        questions: [],
+        currentIndex: 0,
+        answered: false,
+        score: 0,
+        streak: 0,
+        bestStreak: 0,
+        timeLeft: QUESTION_TIME,
+        totalElapsed: 0,
+        questionStartTs: 0,
+        timerInterval: null,
+        records: []
+      };
+
+      function loadBestScores() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch (_) {
+          return {};
+        }
+      }
+
+      function saveBestScores() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(bestScores));
+        } catch (_) {
+          // Ignore storage quota or restricted environments
+        }
+      }
+
+      function showToast(message) {
+        els.toast.textContent = message;
+        els.toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          els.toast.classList.remove("show");
+        }, 2400);
+      }
+
+      function shuffleArray(items) {
+        const copy = items.slice();
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+      }
+
+      function prepareSessionQuestions(topic, count) {
+        const picked = shuffleArray(topic.questions).slice(0, Math.min(count, topic.questions.length));
+        return picked.map((item) => {
+          const indexedOptions = item.options.map((text, idx) => ({
+            text,
+            isCorrect: idx === item.answer
+          }));
+          const shuffledOptions = shuffleArray(indexedOptions);
+          return {
+            q: item.q,
+            options: shuffledOptions.map((o) => o.text),
+            answer: shuffledOptions.findIndex((o) => o.isCorrect),
+            explanation: item.explanation
+          };
+        });
+      }
+
+      function showScreen(target) {
+        stopTimer();
+        [els.homeScreen, els.quizScreen, els.resultScreen].forEach((screen) => {
+          screen.hidden = screen !== target;
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function renderTopics() {
+        els.topicGrid.innerHTML = "";
+        TOPICS.forEach((topic) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "topic" + (state.selectedTopicId === topic.id ? " selected" : "");
+          btn.setAttribute("role", "radio");
+          btn.setAttribute("aria-checked", String(state.selectedTopicId === topic.id));
+          btn.dataset.topicId = topic.id;
+
+          const best = typeof bestScores[topic.id] === "number" ? `${bestScores[topic.id]}% BEST` : "NO RUN";
+
+          btn.innerHTML = `
+            <span class="topic-score">${best}</span>
+            <div class="topic-icon" aria-hidden="true">${topic.icon}</div>
+            <strong>${topic.name}</strong>
+            <small>${topic.subtitle}</small>
+          `;
+
+          btn.addEventListener("click", () => {
+            state.selectedTopicId = topic.id;
+            els.startBtn.disabled = false;
+            renderTopics();
+          });
+
+          els.topicGrid.appendChild(btn);
+        });
+      }
+
+      function formatClock(seconds) {
+        const clamped = Math.max(0, Math.ceil(seconds));
+        const mins = Math.floor(clamped / 60);
+        const secs = clamped % 60;
+        return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+      }
+
+      function stopTimer() {
+        if (state.timerInterval !== null) {
+          clearInterval(state.timerInterval);
+          state.timerInterval = null;
+        }
+      }
+
+      function startQuestionTimer() {
+        stopTimer();
+        state.questionStartTs = performance.now();
+
+        if (!state.timed) {
+          els.quizTimer.textContent = "∞";
+          els.quizTimer.classList.remove("urgent");
+          return;
+        }
+
+        state.timeLeft = QUESTION_TIME;
+        els.quizTimer.textContent = formatClock(state.timeLeft);
+        els.quizTimer.classList.toggle("urgent", state.timeLeft <= 5);
+
+        state.timerInterval = setInterval(() => {
+          state.timeLeft -= 1;
+          els.quizTimer.textContent = formatClock(state.timeLeft);
+          els.quizTimer.classList.toggle("urgent", state.timeLeft <= 5);
+
+          if (state.timeLeft <= 0) {
+            stopTimer();
+            handleTimeExpired();
+          }
+        }, 1000);
+      }
+
+      function recordElapsedForCurrentQuestion() {
+        const elapsedSec = (performance.now() - state.questionStartTs) / 1000;
+        const capped = state.timed ? Math.min(QUESTION_TIME, elapsedSec) : elapsedSec;
+        state.totalElapsed += Math.max(0.1, capped);
+      }
+
+      function startQuiz(topicId = state.selectedTopicId) {
+        const topic = TOPICS.find((t) => t.id === topicId);
+        if (!topic) return;
+
+        state.selectedTopicId = topic.id;
+        state.activeTopic = topic;
+        state.questionCount = Number(
+          els.countSegmented.querySelector("button.is-active")?.dataset.count || state.questionCount
+        );
+        state.timed = Boolean(els.timedToggle.checked);
+        state.questions = prepareSessionQuestions(topic, state.questionCount);
+        state.currentIndex = 0;
+        state.answered = false;
+        state.score = 0;
+        state.streak = 0;
+        state.bestStreak = 0;
+        state.totalElapsed = 0;
+        state.records = [];
+
+        els.quizTopicChip.textContent = topic.name;
+        showScreen(els.quizScreen);
+        renderQuestion();
+      }
+
+      function renderQuestion() {
+        const total = state.questions.length;
+        const idx = state.currentIndex;
+        const item = state.questions[idx];
+
+        state.answered = false;
+        els.nextBtn.disabled = true;
+        els.nextBtn.innerHTML =
+          idx === total - 1 ? `Finish Telemetry <span>→</span>` : `Next Question <span>→</span>`;
+
+        const pct = Math.round((idx / total) * 100);
+        els.progressFill.style.width = `${pct}%`;
+        els.progressBar.setAttribute("aria-valuenow", String(pct));
+
+        els.quizCounter.textContent = `Question ${idx + 1} of ${total}`;
+        els.questionIndex.textContent = `NODE // ${String(idx + 1).padStart(2, "0")}`;
+        els.questionText.textContent = item.q;
+        els.feedbackText.textContent = "";
+        els.feedbackText.className = "feedback";
+
+        els.optionsGrid.innerHTML = "";
+        item.options.forEach((optText, optIdx) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "option";
+          btn.dataset.index = String(optIdx);
+          btn.innerHTML = `
+            <span class="letter">${LETTERS[optIdx] || optIdx + 1}</span>
+            <span>${optText}</span>
+          `;
+          btn.addEventListener("click", () => handleSelectOption(optIdx));
+          els.optionsGrid.appendChild(btn);
+        });
+
+        startQuestionTimer();
+      }
+
+      function finalizeAnswer(selectedIdx, timedOut) {
+        if (state.answered) return;
+        state.answered = true;
+        stopTimer();
+        recordElapsedForCurrentQuestion();
+
+        const item = state.questions[state.currentIndex];
+        const isCorrect = selectedIdx === item.answer;
+        const optionButtons = Array.from(els.optionsGrid.querySelectorAll(".option"));
+
+        optionButtons.forEach((btn, idx) => {
+          btn.disabled = true;
+          if (idx === selectedIdx && !timedOut) {
+            btn.classList.add("selected");
+          }
+          if (idx === item.answer) {
+            btn.classList.add("correct");
+          } else if (idx === selectedIdx && !isCorrect) {
+            btn.classList.add("incorrect");
+          }
+        });
+
+        if (isCorrect) {
+          state.score += 1;
+          state.streak += 1;
+          state.bestStreak = Math.max(state.bestStreak, state.streak);
+          els.feedbackText.textContent = `Verified — ${item.explanation}`;
+          els.feedbackText.className = "feedback good";
+        } else {
+          state.streak = 0;
+          const prefix = timedOut ? "Time expired. " : "Mismatch. ";
+          els.feedbackText.textContent = `${prefix}Correct: ${item.options[item.answer]} — ${item.explanation}`;
+          els.feedbackText.className = "feedback bad";
+        }
+
+        state.records.push({
+          question: item.q,
+          userAnswer: timedOut ? "Timed out" : item.options[selectedIdx],
+          correctAnswer: item.options[item.answer],
+          explanation: item.explanation,
+          isCorrect
+        });
+
+        els.nextBtn.disabled = false;
+      }
+
+      function handleSelectOption(optIdx) {
+        if (state.answered) return;
+        finalizeAnswer(optIdx, false);
+      }
+
+      function handleTimeExpired() {
+        if (state.answered) return;
+        finalizeAnswer(-1, true);
+      }
+
+      function handleNextQuestion() {
+        if (!state.answered) return;
+        if (state.currentIndex + 1 < state.questions.length) {
+          state.currentIndex += 1;
+          renderQuestion();
+        } else {
+          els.progressFill.style.width = "100%";
+          els.progressBar.setAttribute("aria-valuenow", "100");
+          renderResults();
+        }
+      }
+
+      function getResultHeadline(pct) {
+        if (pct === 100) return "Perfect Orbital Lock";
+        if (pct >= 80) return "Orbital Insertion Achieved";
+        if (pct >= 60) return "Trajectory Nominal";
+        if (pct >= 40) return "Partial Telemetry Acquired";
+        return "Signal Lost — Recalibrate";
+      }
+
+      function renderResults() {
+        const total = state.questions.length;
+        const pct = total > 0 ? Math.round((state.score / total) * 100) : 0;
+        const topicId = state.activeTopic.id;
+
+        const prevBest = typeof bestScores[topicId] === "number" ? bestScores[topicId] : null;
+        const isNewBest = prevBest === null || pct > prevBest;
+        if (isNewBest) {
+          bestScores[topicId] = pct;
+          saveBestScores();
+          renderTopics();
+        }
+
+        const currentBest = bestScores[topicId];
+        showScreen(els.resultScreen);
+
+        els.resultKicker.textContent = `${state.activeTopic.name.toUpperCase()} // TELEMETRY COMPLETE`;
+        els.scorePercent.textContent = `${pct}%`;
+        els.scoreFraction.textContent = `${state.score} / ${total}`;
+        els.resultMessage.textContent = getResultHeadline(pct);
+        els.bestScoreText.textContent = isNewBest
+          ? `Personal Best: ${currentBest}% (New Record!)`
+          : `Personal Best: ${currentBest}%`;
+
+        els.statAccuracy.textContent = `${pct}%`;
+        els.statTime.textContent = `${Math.round(state.totalElapsed)}s`;
+        els.statStreak.textContent = String(state.bestStreak);
+
+        // Animate circular SVG ring
+        els.scoreRingFill.style.transition = "none";
+        els.scoreRingFill.style.strokeDashoffset = String(RING_CIRCUMFERENCE);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            els.scoreRingFill.style.transition = "stroke-dashoffset 1s ease";
+            const offset = RING_CIRCUMFERENCE - (pct / 100) * RING_CIRCUMFERENCE;
+            els.scoreRingFill.style.strokeDashoffset = String(offset);
+          });
+        });
+
+        // Diagnostic breakdown list
+        els.reviewSummaryText.textContent = `// ${state.score} of ${total} correct`;
+        els.reviewList.innerHTML = "";
+
+        state.records.forEach((rec) => {
+          const li = document.createElement("li");
+          li.className = "review-item";
+          const markClass = rec.isCorrect ? "review-mark" : "review-mark wrong";
+          const markSymbol = rec.isCorrect ? "✓" : "✕";
+
+          const answerLine = rec.isCorrect
+            ? `<p><b>Answer:</b> ${rec.correctAnswer}</p>`
+            : `<p><b>Your Response:</b> ${rec.userAnswer} · <b>Correct:</b> ${rec.correctAnswer}</p>`;
+
+          li.innerHTML = `
+            <strong><span class="${markClass}" aria-hidden="true">${markSymbol}</span><span>${rec.question}</span></strong>
+            ${answerLine}
+            <p>${rec.explanation}</p>
+          `;
+          els.reviewList.appendChild(li);
+        });
+      }
+
+      function resetScores() {
+        bestScores = {};
+        saveBestScores();
+        renderTopics();
+        if (!els.resultScreen.hidden && state.activeTopic) {
+          els.bestScoreText.textContent = "Personal Best: —";
+        }
+        showToast("Personal best scores reset.");
+      }
+
+      function bindEvents() {
+        els.brandHome.addEventListener("click", (e) => {
+          e.preventDefault();
+          showScreen(els.homeScreen);
+        });
+
+        els.headerActionBtn.addEventListener("click", resetScores);
+
+        els.countSegmented.addEventListener("click", (e) => {
+          const btn = e.target.closest("button[data-count]");
+          if (!btn) return;
+          els.countSegmented.querySelectorAll("button").forEach((b) => {
+            b.classList.toggle("is-active", b === btn);
+          });
+          state.questionCount = Number(btn.dataset.count);
+        });
+
+        els.timedToggle.addEventListener("change", () => {
+          state.timed = Boolean(els.timedToggle.checked);
+        });
+
+        els.startBtn.addEventListener("click", () => {
+          if (state.selectedTopicId) {
+            startQuiz(state.selectedTopicId);
+          }
+        });
+
+        els.quitBtn.addEventListener("click", () => {
+          showScreen(els.homeScreen);
+          showToast("Session aborted.");
+        });
+
+        els.nextBtn.addEventListener("click", handleNextQuestion);
+
+        els.chooseAnotherBtn.addEventListener("click", () => {
+          showScreen(els.homeScreen);
+        });
+
+        els.retryTopicBtn.addEventListener("click", () => {
+          if (state.activeTopic) {
+            startQuiz(state.activeTopic.id);
+          }
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (els.quizScreen.hidden) return;
+          const key = e.key.toUpperCase();
+          const letterIdx = LETTERS.indexOf(key);
+          if (letterIdx !== -1 && !state.answered) {
+            const targetBtn = els.optionsGrid.querySelector(`.option[data-index="${letterIdx}"]`);
+            if (targetBtn) {
+              targetBtn.click();
+            }
+          } else if (e.key === "Enter" && state.answered && !els.nextBtn.disabled) {
+            e.preventDefault();
+            handleNextQuestion();
+          }
+        });
+      }
+
+      renderTopics();
+      bindEvents();
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
